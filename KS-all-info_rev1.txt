@@ -1,0 +1,31 @@
+WHAT IS HIERARCHY 4.0
+whether you own build manage maintain or operate an oil plant inevitably issues arise that require immediate action and resolution.
+With big data flowing in constantly from all sectors making sense of everything while troubleshooting
+issues without wasting time can be a huge challenge. 
+So what's the solution?
+introducing hierarchy 4.0 and Innovative software solution for control Safety Systems 
+Hierarchy 4.0 presents an interactive diagram of the entire plant revealing cause and effect Behavior with readings provided in a hierarchical view allowing for a deep understanding of the system's strategy 
+All data is collected from multiple sources visualized as a diagram and optimized through a customized dashboard allowing users to run a logic simulation from live data or pick a moment from their history. 
+Your simulation is based on actual safety Logics not just on a math model 
+Now every users can prepare an RCA report 90 percent faster in just a few minutes.
+Hierarchy can be used for any project phase starting from engineering to commissioning and up to operation and maintenance while supporting hazop Hazard analysis by reducing human error and avoiding incorrect documentation.
+Hierarchy 4.0 supports plant operators in decision making taking into account both the safety and the operability of their assets. 
+Hierarchy 4.0 Embraces a block log approach: it automatically calculates all Logics affected by an
+override and gives a full understanding of constraints. 
+Not convinced let's look at the data! 
+During its first project hierarchy 4.0 prevented a revenue loss of 45 million dollars. 
+Plants that utilize hierarchy 4.0 save up to 95 of their time and deliver a return on investment up to five times in value from day one and experience a Personnel utilization and plant efficiency increase by 20 percent per year.
+
+Try our demo and make the move to hierarchy 4.0 today
+
+CASE STUDIES
+We prepared four case studies to show the true potential of Hierarchy 4.0. In each case we are going to review the actual method to approach the issue and the new method, using Hierarchy 4.0, to solve the problem at hand.
+The four case studies are 1)Restore a PSD 1 node without requiring a planned shutdown; 2)Evaluate the maintenance on a voting 2 out of 3 instruments; 3)Prepare the maintenance on 2 out of 3 voting where one instrument is already in fault; 4) Prepare a full Root Cause Analysis (RCA) of an unexpected shutdown.
+
+CASE STUDY 1 - Restore a PSD 1 node without requiring a planned shutdown, all while the plant remains in normal operation.
+This Case Study Challenge is to restore a rack connected to the PSD 1 node without requiring a planned shutdown, all while the plant remains in normal operation. 
+What is the actual method: engineer and operator must use the instrument list the get the Rack 2 number of modules (9 AI modules) and verify how many channels they have assigned (8  channels for 9 cards for a total of 72 I/O). This is required to get all the Input/Output connected the Rack 2. All signals that have been identified must be verified in the logical configuration using an engineering workstation: 1)Each signal must be individually inspected in the system applications for its logic function. 2)If a signal is used in multiple controllers, all logics must be cross examined again for all the references. 3)The engineer must prepare a report containing the listed logics and final elements affected during this process.
+What are the actual issues and drawbacks in using the actual method: 1)There is a possibility of human error when checking the connection between signals and logics. 
+2) The Impact Analysis Report has not been correctly updated with the latest software modifications. 3)The troubleshooting process is time consuming due to the involvement of several specialists. 4)Other maintenance activities have been delayed as a result.
+The new method is to use Hierarchy 4.0 and you will have your solution in few simple steps.1)Gain access to Hierarchy 4.0 2)Enter Maintenance mode and select the nodes PSD1 and RACK2  3)Obtain the results of your research in a few seconds 4)Get a comprehensive overview of all signals allocated in the specified controller, with emphasis on the signals involved in the rack replacement 5)Easily identify all  the associations between the items and the impacted logics 6)Print from Hierarchy all pages that are affected by the rack replacement 7)Maintain full control of the activity.
+
