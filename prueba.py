@@ -6,6 +6,7 @@ from langchain import vectorstores as vs
 from langchain import retrievers
 from langchain.chains.question_answering import load_qa_chain
 from langchain import HuggingFaceHub
+from langchain import PromptTemplate
 
 
 
@@ -136,16 +137,22 @@ class TalkDocument():
              self.llm = HuggingFaceHub(repo_id=self.repo_id, model_kwargs=
                                                                         {"temperature":temperature,
                                                                         "max_length": max_length})
+             
+        prompt_template = """Use the following pieces of context to answer the question at the end. If you don't know the answer, just say that you don't know, don't try to make up an answer.
+        Question: {question}
+        Answer in Spanish:"""
 
-        self.chain = self.chain if self.chain is not None else load_qa_chain(self.llm, chain_type=chain_type)
+        PROMPT = PromptTemplate(
+            template=prompt_template, input_variables=["question"]
+        )
+
+
+        self.chain = self.chain if self.chain is not None else load_qa_chain(self.llm, chain_type=chain_type, prompt_template=PROMPT)
 
         print(self.chain)
-        print("%%%%%%%%%%%%%%%%")
-        print(relevant_docs)
-        print("%%%%%%%%%%%%%%%%")
-        print(question)
+
     
-        response = self.chain.run(input_documents=relevant_docs, question=question)
+        response = self.chain({"input_documents": relevant_docs, "question": question})
 
         return response
 
