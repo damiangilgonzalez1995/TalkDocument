@@ -15,7 +15,7 @@ class TalkDocument(object):
     TalkDocument is a class for processing and interacting with documents, embeddings, and question-answering chains.
 
     Attributes:
-        data_source_path (str): Path to the data source (file, PDF, or web URL).
+        data_source_path (str): Path to the data source (TXT, PDF, or web URL).
         HF_API_TOKEN (str): Hugging Face API token.
         OPENAI_KEY (str): OpenAI API key.
         document (str): Loaded document content.
@@ -28,19 +28,19 @@ class TalkDocument(object):
         repo_id (str): Repository ID for Hugging Face models.
 
     Methods:
-        get_document(data_source_type="FILE"): Load the document content based on the data source type.
+        get_document(data_source_type="TXT"): Load the document content based on the data source type.
         get_split(split_type="character", chunk_size=1000, chunk_overlap=10): Split the document content into chunks.
         get_embedding(embedding_type="HF", OPENAI_KEY=None): Get the embedding model based on the type.
         get_storage(vectorstore_type="FAISS", embedding_type="HF", OPENAI_KEY=None): Create vector storage using embeddings.
         get_search(question, with_score=False): Perform a similarity search for relevant documents.
         do_question(question, repo_id="declare-lab/flan-alpaca-large", chain_type="stuff", relevant_docs=None, with_score=False, temperature=0, max_length=300, language="Spanish"): Answer a question using relevant documents and a question-answering chain.
-        create_db_document(data_source_type="FILE", split_type="token", chunk_size=200, embedding_type="HF", chunk_overlap=10, OPENAI_KEY=None, vectorstore_type="FAISS"): Create and return a vector storage instance with document content.
+        create_db_document(data_source_type="TXT", split_type="token", chunk_size=200, embedding_type="HF", chunk_overlap=10, OPENAI_KEY=None, vectorstore_type="FAISS"): Create and return a vector storage instance with document content.
     """
     def __init__(self, data_source_path, HF_API_TOKEN, OPENAI_KEY=None) -> None:
         """
         Initialize the TalkDocument instance.
 
-        :param data_source_path: Path to the data source (file, PDF, or web URL).
+        :param data_source_path: Path to the data source (TXT, PDF, or web URL).
         :type data_source_path: str
         :param HF_API_TOKEN: Hugging Face API token.
         :type HF_API_TOKEN: str
@@ -61,11 +61,11 @@ class TalkDocument(object):
 
     
 
-    def get_document(self, data_source_type="FILE"):
+    def get_document(self, data_source_type="TXT"):
         """
         Load the document content based on the data source type.
 
-        :param data_source_type: Type of data source (FILE, PDF, WEB).
+        :param data_source_type: Type of data source (TXT, PDF, WEB).
         :type data_source_type: str, optional
         :return: Loaded document content.
         :rtype: str
@@ -73,7 +73,7 @@ class TalkDocument(object):
          
         data_source_type = data_source_type if data_source_type.upper() in DS_TYPE_LIST else DS_TYPE_LIST[0]
 
-        if data_source_type == "FILE":
+        if data_source_type == "TXT":
             loader = dl.TextLoader(self.data_source_path)
             self.document = loader.load()
 
@@ -278,7 +278,7 @@ class TalkDocument(object):
     
 
     def create_db_document(self, 
-                           data_source_type="FILE",
+                           data_source_type="TXT",
                            split_type="token",
                            chunk_size=200,
                            embedding_type="HF",
@@ -288,7 +288,7 @@ class TalkDocument(object):
         """
         Create and return a vector storage instance with document content.
 
-        :param data_source_type: Type of data source (FILE, PDF, WEB).
+        :param data_source_type: Type of data source (TXT, PDF, WEB).
         :type data_source_type: str, optional
         :param split_type: Type of splitting (token, character).
         :type split_type: str, optional
