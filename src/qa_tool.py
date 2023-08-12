@@ -7,6 +7,8 @@ from langchain import retrievers
 from langchain.chains.question_answering import load_qa_chain
 from langchain import HuggingFaceHub
 from langchain import PromptTemplate
+from PyPDF2 import PdfReader  
+
 
 
 
@@ -36,7 +38,7 @@ class TalkDocument(object):
         do_question(question, repo_id="declare-lab/flan-alpaca-large", chain_type="stuff", relevant_docs=None, with_score=False, temperature=0, max_length=300, language="Spanish"): Answer a question using relevant documents and a question-answering chain.
         create_db_document(data_source_type="TXT", split_type="token", chunk_size=200, embedding_type="HF", chunk_overlap=10, OPENAI_KEY=None, vectorstore_type="FAISS"): Create and return a vector storage instance with document content.
     """
-    def __init__(self, data_source_path, HF_API_TOKEN, OPENAI_KEY=None) -> None:
+    def __init__(self, HF_API_TOKEN, data_source_path=None, data_text=None, OPENAI_KEY=None) -> None:
         """
         Initialize the TalkDocument instance.
 
@@ -48,6 +50,7 @@ class TalkDocument(object):
         :type OPENAI_KEY: str, optional
         """
         self.data_source_path = data_source_path
+        self.data_text = data_text
         self.document = None
         self.document_splited = None
         self.embedding_model = None
@@ -58,6 +61,10 @@ class TalkDocument(object):
         self.llm = None
         self.chain = None
         self.repo_id = None
+
+        if not self.data_source_path and not self.data_text:
+            #TODO ADD LOGS
+            print("YOU MUST INTRODUCE ONE OF THEM")
 
     
 
@@ -70,16 +77,21 @@ class TalkDocument(object):
         :return: Loaded document content.
         :rtype: str
         """
-         
         data_source_type = data_source_type if data_source_type.upper() in DS_TYPE_LIST else DS_TYPE_LIST[0]
-
+        print("&&&&&&&&", self.data_text)
         if data_source_type == "TXT":
-            loader = dl.TextLoader(self.data_source_path)
-            self.document = loader.load()
+            if self.data_text:
+                self.document = self.data_text
+            elif self.data_source_path:
+                loader = dl.TextLoader(self.data_source_path)
+                self.document = loader.load()
 
         elif data_source_type == "PDF":
-            loader = dl.PyPDFLoader(self.data_source_path)
-            self.document = loader.load()
+            if self.data_text:
+                self.document = self.data_text
+            elif self.data_source_path:
+                loader = dl.PyPDFLoader(self.data_source_path)
+                self.document = loader.load()
 
         elif data_source_type == "WEB":
             loader = dl.WebBaseLoader(self.data_source_path)
@@ -109,12 +121,19 @@ class TalkDocument(object):
                 text_splitter = ts.RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
             elif split_type == "TOKEN":
                 text_splitter  = ts.TokenTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-            
-            try:
-                self.document_splited = text_splitter.split_documents(self.document)
-            except Exception as error:
-                print("An exception occurred:", error)
+            print("joder", self.data_text)
+            if self.data_text:
+                try:
+                    self.document_splited = text_splitter.split_text(text=self.document)
+                except Exception as error:
+                    print("111", error)
 
+            elif self.data_source_path:
+                try:
+                    self.document_splited = text_splitter.split_documents(documents=self.document)
+                except Exception as error:
+                    print("2222", error)
+        
         return self.document_splited
 
     def get_embedding(self, embedding_type="HF", OPENAI_KEY=None):
@@ -178,11 +197,17 @@ class TalkDocument(object):
         # elif vectorstore_type == "LANCE":
         #     model_vectorstore = vs.LanceDB
 
+        if self.data_text:
+            try:
+                self.db = model_vectorstore.from_texts(self.document_splited, self.embedding_model)
+            except Exception as error:
+                print("333", error)
 
-        try:
-            self.db = model_vectorstore.from_documents(self.document_splited, self.embedding_model)
-        except Exception as error:
-            print("An exception occurred:", error)
+        elif self.data_source_path:
+            try:
+                self.db = model_vectorstore.from_documents(self.document_splited, self.embedding_model)
+            except Exception as error:
+                print("444", error)
 
         return self.db
     
@@ -358,25 +383,32 @@ import os
 
 # print(res)
 
-HF_API_TOKEN =  "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"
-talkdocument_object = TalkDocument(data_source_path='./data/test.pdf',HF_API_TOKEN=HF_API_TOKEN)
-db = talkdocument_object.create_db_document(data_source_type="PDF",
-                                        split_type="token",
-                                        chunk_size=200)
+# CON PATH
+# HF_API_TOKEN =  "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"
+# talkdocument_object = TalkDocument(data_source_path='./data/test.pdf',HF_API_TOKEN=HF_API_TOKEN)
+# db = talkdocument_object.create_db_document(data_source_type="PDF",
+#                                         split_type="token",
+#                                         chunk_size=200)
+# print(db)
+# print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+# query = "Cual es la empresa del documento?"
+# res = talkdocument_object.do_question(query, temperature=1, language="spanish")
+# print(res)
 
+# sin path
+# HF_API_TOKEN =  "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"
+# objet_text = open('./data/test.pdf', 'rb')
+# talkdocument_object = TalkDocument(data_source_path=objet_text,HF_API_TOKEN=HF_API_TOKEN)
+# db = talkdocument_object.create_db_document(data_source_type="PDF",
+#                                         split_type="token",
+#                                         chunk_size=200)
+# print(db)
+# print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+# query = "Cual es la empresa del documento?"
+# res = talkdocument_object.do_question(query, temperature=1, language="spanish")
+# print(res)
 
-print(db)
-print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-query = "Cual es la empresa del documento?"
-
-# doct = talkdocument_object.get_search(query)
-
-
-res = talkdocument_object.do_question(query, temperature=1, language="spanish")
-
-print(res)
-
-print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+# print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
 
 # query = "HOW MUCH faster can users be in preparing an RCA REPORT?"
 
