@@ -78,7 +78,6 @@ class TalkDocument(object):
         :rtype: str
         """
         data_source_type = data_source_type if data_source_type.upper() in DS_TYPE_LIST else DS_TYPE_LIST[0]
-        print("&&&&&&&&", self.data_text)
         if data_source_type == "TXT":
             if self.data_text:
                 self.document = self.data_text
@@ -99,7 +98,7 @@ class TalkDocument(object):
 
         return self.document
 
-    def get_split(self, split_type="character", chunk_size=1000, chunk_overlap=10):
+    def get_split(self, split_type="character", chunk_size=200, chunk_overlap=10):
         """
         Split the document content into chunks.
 
@@ -121,18 +120,18 @@ class TalkDocument(object):
                 text_splitter = ts.RecursiveCharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
             elif split_type == "TOKEN":
                 text_splitter  = ts.TokenTextSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
-            print("joder", self.data_text)
+ 
             if self.data_text:
                 try:
                     self.document_splited = text_splitter.split_text(text=self.document)
                 except Exception as error:
-                    print("111", error)
+                    print( error)
 
             elif self.data_source_path:
                 try:
                     self.document_splited = text_splitter.split_documents(documents=self.document)
                 except Exception as error:
-                    print("2222", error)
+                    print( error)
         
         return self.document_splited
 
@@ -201,13 +200,13 @@ class TalkDocument(object):
             try:
                 self.db = model_vectorstore.from_texts(self.document_splited, self.embedding_model)
             except Exception as error:
-                print("333", error)
+                print( error)
 
         elif self.data_source_path:
             try:
                 self.db = model_vectorstore.from_documents(self.document_splited, self.embedding_model)
             except Exception as error:
-                print("444", error)
+                print( error)
 
         return self.db
     
@@ -227,7 +226,7 @@ class TalkDocument(object):
 
         relevant_docs = None
 
-        if self.db and "SVM" not in str(type(db)):
+        if self.db and "SVM" not in str(type(self.db)):
 
             if with_score:
                 relevant_docs = self.db.similarity_search_with_relevance_scores(question)
@@ -285,6 +284,9 @@ class TalkDocument(object):
              
         prompt_template = """Use the following pieces of context to answer the question at the end. 
         If you don't know the answer, just say that you don't know, don't try to make up an answer.
+        If the question is similar to [Talk me about the document], 
+        the response should be a summary commenting on the most important points about the document
+
 
         {context}
         Question: {question}
@@ -342,7 +344,9 @@ class TalkDocument(object):
     
 import os 
 
-# FILE
+# # FILE
+# HF_API_TOKEN =  "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"
+
 # talkdocument_object = TalkDocument(data_source_path='./KS-all-info_rev1.txt')
 # talkdocument_object.get_document(data_source_type="FILE")
 # talkdocument_object.get_split(split_type="token", chunk_size=200)
@@ -398,13 +402,33 @@ import os
 # sin path
 # HF_API_TOKEN =  "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"
 # objet_text = open('./data/test.pdf', 'rb')
-# talkdocument_object = TalkDocument(data_source_path=objet_text,HF_API_TOKEN=HF_API_TOKEN)
+# pdf_readed = PdfReader(objet_text)
+# document_text = ""
+# for page in pdf_readed.pages:
+#     document_text+= page.extract_text()
+
+# objet_text = open('./data/test.txt', 'rb')
+# print("aqui", type(objet_text))
+# text = ""
+# for line in objet_text:
+#     text+= line.decode('utf-8')
+
+
+# HF_API_TOKEN =  "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"
+# objet_text = open('./data/test.pdf', 'rb')
+# pdf_readed = PdfReader(objet_text)
+# document_text = ""
+# for page in pdf_readed.pages:
+#     document_text+= page.extract_text()
+
+# talkdocument_object = TalkDocument(data_text=document_text,HF_API_TOKEN=HF_API_TOKEN)
 # db = talkdocument_object.create_db_document(data_source_type="PDF",
 #                                         split_type="token",
 #                                         chunk_size=200)
-# print(db)
+# # print(db)
 # print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-# query = "Cual es la empresa del documento?"
+# # query = "Cual es la empresa del documento?"
+# query = " Talk me about the document"
 # res = talkdocument_object.do_question(query, temperature=1, language="spanish")
 # print(res)
 
