@@ -62,7 +62,7 @@ def create_db_page():
 
         document = ""
         url_input = ""
-        st.markdown(radio_button_style, unsafe_allow_html=True)
+        m = st.markdown(radio_button_style, unsafe_allow_html=True)
 
 
         # Create tabs for different sections of the page

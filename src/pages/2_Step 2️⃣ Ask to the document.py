@@ -74,10 +74,8 @@ def query_page():
 
 
                 
-                        
-       
-
+                    
 
 # Run the Streamlit app
 if __name__ == "__main__":
-    consultas_page()
+    query_page()

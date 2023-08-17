@@ -14,7 +14,7 @@ try:
     hf_key = os.environ['HUGGINGFACE_API_KEY']
 except:
     st.markdown("<h2 style='text-align: center;color: orange;'>Environment variable 'HUGGINGFACE_API_KEY' not detected. In order to use the tool you must add your huggingface key.</h2>", unsafe_allow_html=True)
-    hf_key = st.text_input("🌕 Please, enter your HUGGINGFACE api key.")
+    hf_key = st.text_input("🌕 Please, enter your HUGGINGFACE api key.", type="password")
 
 if hf_key:
 
