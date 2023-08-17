@@ -1,9 +1,8 @@
 #Import the required Libraries
 import streamlit as st
-import pandas as pd
 from streamlit_extras.let_it_rain import rain
 
-st.set_page_config(layout="wide")
+st.set_page_config(layout="wide", page_icon="👋",)
 
 rain(emoji="🎆",animation_length=5)
 st.markdown(f"<h1 style='text-align: center; color: black;'> QA Document with LLMs</h1>", unsafe_allow_html=True)
