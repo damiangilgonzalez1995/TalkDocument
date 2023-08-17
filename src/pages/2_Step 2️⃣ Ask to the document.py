@@ -5,17 +5,21 @@ from style import *
 
 
 
-
-def consultas_page():
+# Define a function to create the "Query" page
+def query_page():
+    # Set Streamlit page configuration
     st.set_page_config(layout="wide", page_title="Talk Document")
 
+    # Define columns for layout
     col_ask, col_pic3 = st.columns(2)
 
+    # Content for the right column (col_pic3)
     with col_pic3:
         st.markdown("<h1 style='text-align: center'>How it works</h1>", unsafe_allow_html=True)
 
         st.image("docs\img\Query.PNG")
 
+    # Content for the left column (col_ask)
     with col_ask:
 
         st.markdown("<h1 style='text-align: center'>Chat with the document</h1>", unsafe_allow_html=True)
@@ -24,8 +28,8 @@ def consultas_page():
             st.markdown("<h3 style='text-align: center ; color: red;'>You must create a Data Base</h3>", unsafe_allow_html=True)
             rain(emoji="⚠️")
 
-            m = st.markdown(button_step2, unsafe_allow_html=True)
-
+            # Display button and allow switching to the previous step
+            st.markdown(button_step2, unsafe_allow_html=True)
             go_back = st.button("Go to the previous step")
             if go_back:
                 switch_page("Step 1️⃣ Create Data Base")
@@ -33,19 +37,19 @@ def consultas_page():
            
         else:
             db = st.session_state['db']
-
+            # Initialize session state variables for user input and responses
             if "generated" not in st.session_state:
                     st.session_state["generated"] = []
                 
             if "past" not in st.session_state:
                 st.session_state["past"] = []
 
-
+            # Get user input
             user_input = st.text_input(label=f"Question",
                                     value="Talk me about the document")
 
 
-
+            
             if st.button("ASK"):
                     object_talkdocument = st.session_state["object_talkdocument"]
                     response = object_talkdocument.do_question(user_input, repo_id=st.session_state["settings"]["repo_id"])
@@ -73,4 +77,7 @@ def consultas_page():
                         
        
 
-consultas_page()
+
+# Run the Streamlit app
+if __name__ == "__main__":
+    consultas_page()
