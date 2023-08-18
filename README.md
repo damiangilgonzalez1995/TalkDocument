@@ -11,30 +11,26 @@ The Interactive Document Query System project offers a dynamic web application t
 The project is organized as follows:
 
 ```
-TalkDocumentProject
+TalkDocument
 ├─ .streamlit
 │  └─ config.toml
 ├─ .vscode
 ├─ data
-│  ├─ test.pdf
 │  └─ test.txt
-├─ docs
-│  └─ img
 ├─ README.md
 ├─ requirements.txt
-├─ src
-│  ├─ Home.py
-│  ├─ pages
-│  │  ├─ 1_Step 1️⃣ Create Data Base.py
-│  │  ├─ 2_Step 2️⃣ Ask to the document.py
-│  │  ├─ __init__.py
-│  │  └─ __pycache__
-│  ├─ qa_tool.py
-│  ├─ style.py
-│  ├─ utils.py
-│  ├─ __init__.py
-│  └─ __pycache__
-└─ __pycache__
+├─ resources
+└─ src
+   ├─ Home.py
+   ├─ pages
+   │  ├─ 1_Step 1️⃣ Create Data Base.py
+   │  ├─ 2_Step 2️⃣ Ask to the document.py
+   │  ├─ __init__.py
+   ├─ qa_tool.py
+   ├─ style.py
+   ├─ utils.py
+   ├─ __init__py
+
 ```
 
 - The .streamlit directory contains the Streamlit configuration file config.toml for customizing the web application's behavior.
@@ -68,4 +64,5 @@ streamlit run yourpath/TalkDocument/src/home.py
 ```
 # Credits
 This project was developed by Damián Gil González.
+
 
