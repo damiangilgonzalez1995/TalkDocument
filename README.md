@@ -48,10 +48,10 @@ TalkDocument
 # Requirements
 To successfully utilize the Interactive Document Query System, you must satisfy the following prerequisites:
 
-   **Note** 
+   >**Note** 
    A free API key from Hugging Face Hub: The system employs Hugging Face models for embedding and vector storage. Obtain your API key by registering on the Hugging Face website.
 
-   **Warning** 
+   >**Warning** 
    Optionally, an API key from OpenAI (if using OpenAI embedding): If you choose to utilize OpenAI's embedding model, you'll need an OpenAI API key. Register on the OpenAI platform to acquire your key.
 
 # Getting Started
