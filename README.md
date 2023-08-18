@@ -1,11 +1,11 @@
 # Project Name: TalkDocument
-![Demo Video](docs/video/video_demo.mp4)
+![Demo Video](resources/video/video_demo.mp4)
 
 # Description
 The Interactive Document Query System project offers a dynamic web application that empowers users to inquire about documents available in PDF, TXT, or URL formats. Behind this project lies a robust technological stack, including embeddings, vector storage, distance calculation algorithms like FAISS, and a large language model for facilitating user-document interactions.
 
 ![Schema](/resources/img/schema.png)
-![Schema](schema.png)
+
 
 # Project Structure
 The project is organized as follows:
