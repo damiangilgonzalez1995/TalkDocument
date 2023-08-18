@@ -4,7 +4,7 @@
 
 
 # Description
-The Interactive Document Query System project offers a dynamic web application that empowers users to inquire about documents available in PDF, TXT, or URL formats. Behind this project lies a robust technological stack, including embeddings, vector storage, distance calculation algorithms like FAISS, and a large language model for facilitating user-document interactions.
+🤖 The Interactive Document Query System project offers a dynamic web application that empowers users to inquire about documents available in PDF, TXT, or URL formats. Behind this project lies a robust technological stack, including embeddings, vector storage, distance calculation algorithms like FAISS, and a large language model for facilitating user-document interactions.
 
 ![Demo Video](resources/video/demo_video.gif)
 
@@ -48,9 +48,9 @@ TalkDocument
 # Requirements
 To successfully utilize the Interactive Document Query System, you must satisfy the following prerequisites:
 
-[!IMPORTANT] A free API key from Hugging Face Hub: The system employs Hugging Face models for embedding and vector storage. Obtain your API key by registering on the Hugging Face website.
+   **IMPORTANT** A free API key from Hugging Face Hub: The system employs Hugging Face models for embedding and vector storage. Obtain your API key by registering on the Hugging Face website.
 
-[!IMPORTANT]Optionally, an API key from OpenAI (if using OpenAI embedding): If you choose to utilize OpenAI's embedding model, you'll need an OpenAI API key. Register on the OpenAI platform to acquire your key.
+   **IMPORTANT** Optionally, an API key from OpenAI (if using OpenAI embedding): If you choose to utilize OpenAI's embedding model, you'll need an OpenAI API key. Register on the OpenAI platform to acquire your key.
 
 # Getting Started
 To launch the application, follow these steps:
