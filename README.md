@@ -1,10 +1,12 @@
-### Project Name: TalkDocument
-Project Image
+# Project Name: TalkDocument
+![Demo Video](docs/video/video_demo.mp4)
 
-### Description
+# Description
 The Interactive Document Query System project offers a dynamic web application that empowers users to inquire about documents available in PDF, TXT, or URL formats. Behind this project lies a robust technological stack, including embeddings, vector storage, distance calculation algorithms like FAISS, and a large language model for facilitating user-document interactions.
 
-### Project Structure
+![Schema](docs/img/schema.png)
+
+# Project Structure
 The project is organized as follows:
 
 ```
@@ -45,14 +47,14 @@ TalkDocumentProject
     - qa_tool.py defines the TalkDocument class responsible for creating the database and handling queries.
     - Other utility files like style.py and utils.py might provide styling and helper functions, respectively.
 
-### Requirements
+# Requirements
 To successfully utilize the Interactive Document Query System, you must satisfy the following prerequisites:
 
-A free API key from Hugging Face Hub: The system employs Hugging Face models for embedding and vector storage. Obtain your API key by registering on the Hugging Face website.
+- [!IMPORTANT] A free API key from Hugging Face Hub: The system employs Hugging Face models for embedding and vector storage. Obtain your API key by registering on the Hugging Face website.
 
-Optionally, an API key from OpenAI (if using OpenAI embedding): If you choose to utilize OpenAI's embedding model, you'll need an OpenAI API key. Register on the OpenAI platform to acquire your key.
+- [!IMPORTANT]Optionally, an API key from OpenAI (if using OpenAI embedding): If you choose to utilize OpenAI's embedding model, you'll need an OpenAI API key. Register on the OpenAI platform to acquire your key.
 
-### Getting Started
+# Getting Started
 To launch the application, follow these steps:
 
 1. Clone the repository to your local machine.
@@ -60,9 +62,9 @@ To launch the application, follow these steps:
 3. Open your terminal and navigate to the project's root directory.
 4. Run the following command:
 
-```bash
+```
 streamlit run yourpath/TalkDocument/src/home.py
 ```
-### Credits
+# Credits
 This project was developed by Damián Gil González.
 

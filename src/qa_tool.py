@@ -269,7 +269,6 @@ class TalkDocument(object):
         :rtype: str
         """
 
-
         relevant_docs = self.get_search(question, with_score=with_score)
 
         self.repo_id = self.repo_id if self.repo_id is not None else repo_id
