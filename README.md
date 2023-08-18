@@ -1,6 +1,7 @@
 # Project Name: Talk with Document using LLM's
 
-### Diagram of how the web application works 📷:
+### Diagram of how the web application works 📷: 
+
 
 
 ![Schema](/resources/img/schema.png)
@@ -11,7 +12,7 @@
 
 ### Demo 🎥
 
-                                 ![Demo Video](resources/video/demo_video.gif)
+![Demo Video](resources/video/demo_video.gif)
 
 # Project Structure
 The project is organized as follows:
