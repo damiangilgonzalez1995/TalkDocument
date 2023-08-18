@@ -1,4 +1,4 @@
-# Project Name: TalkDocument
+# Project Name: Talk with Document using LLM's
 ![Demo Video](resources/video/demo_video.gif)
 
 # Description

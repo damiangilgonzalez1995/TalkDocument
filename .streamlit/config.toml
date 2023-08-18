@@ -166,8 +166,6 @@ showfileUploaderEncoding = true
 showPyplotGlobalUse = true
 
 
-
-
 [theme]
 base = "light"
 primaryColor = "#00CED1"  # Verde turquesa
