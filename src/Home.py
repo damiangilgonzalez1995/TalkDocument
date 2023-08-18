@@ -27,5 +27,5 @@ if hf_key:
 
 left_co, cent_co,last_co = st.columns(3)
 with cent_co:
-    st.image("docs\img\schema.PNG")
+    st.image("resources\img\schema.PNG")
 

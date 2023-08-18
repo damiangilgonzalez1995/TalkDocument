@@ -76,7 +76,7 @@ def create_db_page():
             
                 st.markdown("<h1 style='text-align: center'>We support this formats:</h1>", unsafe_allow_html=True)
 
-                st.image("docs\img\Documents.PNG")
+                st.image("resources\img\Documents.PNG")
 
             with col_doc:
         
@@ -197,7 +197,7 @@ def create_db_page():
             with col_pic2:
                 st.markdown("<h1 style='text-align: center'>Setting the LLM App </h1>", unsafe_allow_html=True)
 
-                st.image("docs\img\Application.PNG")
+                st.image("resources\img\Application.PNG")
 
 
             with col_setting:

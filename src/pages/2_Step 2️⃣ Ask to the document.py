@@ -17,7 +17,7 @@ def query_page():
     with col_pic3:
         st.markdown("<h1 style='text-align: center'>How it works</h1>", unsafe_allow_html=True)
 
-        st.image("docs\img\Query.PNG")
+        st.image("resources\img\Query.PNG")
 
     # Content for the left column (col_ask)
     with col_ask:
