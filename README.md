@@ -1,12 +1,17 @@
 # Project Name: Talk with Document using LLM's
 
+### Diagram of how the web application works 📷:
+
+
 ![Schema](/resources/img/schema.png)
 
 
 # Description
 🤖 The Interactive Document Query System project offers a dynamic web application that empowers users to inquire about documents available in PDF, TXT, or URL formats. Behind this project lies a robust technological stack, including embeddings, vector storage, distance calculation algorithms like FAISS, and a large language model for facilitating user-document interactions.
 
-![Demo Video](resources/video/demo_video.gif)
+### Demo 🎥
+
+                                 ![Demo Video](resources/video/demo_video.gif)
 
 # Project Structure
 The project is organized as follows:
