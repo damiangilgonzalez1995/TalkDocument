@@ -172,5 +172,5 @@ primaryColor = "#00CED1"  # Verde turquesa
 backgroundColor = "#E0FFFF"  # Turquesa muy claro
 secondaryBackgroundColor = "#FFFFFF"  # Fondo blanco
 textColor = "#000000"  # Texto negro
-font = "sans-serif"
+font = "sans serif"
 
