@@ -6,10 +6,14 @@ from langchain import retrievers
 from langchain.chains.question_answering import load_qa_chain
 from langchain import HuggingFaceHub
 from langchain import PromptTemplate
-from utils import util
 
-
-
+# Some constant
+DS_TYPE_LIST = ["WEB", "PDF", "TXT"]
+SPLIT_TYPE_LIST = ["CHARACTER", "TOKEN"]
+EMBEDDING_TYPE_LIST = ["HF", "OPENAI"]
+VECTORSTORE_TYPE_LIST = ["FAISS", "CHROMA", "SVM"]
+REPO_ID_DEFAULT = "declare-lab/flan-alpaca-large"
+CHAIN_TYPE_LIST = ["stuff", "map_reduce", "map_rerank", "refine"]
 
 
 class TalkDocument(object):
@@ -77,7 +81,7 @@ class TalkDocument(object):
         :return: Loaded document content.
         :rtype: str
         """
-        data_source_type = data_source_type if data_source_type.upper() in util.DS_TYPE_LIST else util.DS_TYPE_LIST[0]
+        data_source_type = data_source_type if data_source_type.upper() in DS_TYPE_LIST else DS_TYPE_LIST[0]
         if data_source_type == "TXT":
             if self.data_text:
                 self.document = self.data_text
@@ -112,7 +116,7 @@ class TalkDocument(object):
         :rtype: list
         """
 
-        split_type = split_type.upper() if split_type.upper() in util.SPLIT_TYPE_LIST else util.SPLIT_TYPE_LIST[0]
+        split_type = split_type.upper() if split_type.upper() in SPLIT_TYPE_LIST else SPLIT_TYPE_LIST[0]
 
         if self.document:
 
@@ -148,7 +152,7 @@ class TalkDocument(object):
         """
         if not self.embedding_model:
 
-            embedding_type = embedding_type.upper() if embedding_type.upper() in util.EMBEDDING_TYPE_LIST else util.EMBEDDING_TYPE_LIST[0]
+            embedding_type = embedding_type.upper() if embedding_type.upper() in EMBEDDING_TYPE_LIST else EMBEDDING_TYPE_LIST[0]
 
             if embedding_type == "HF":
                 self.embedding_model = embeddings.HuggingFaceEmbeddings()
@@ -179,7 +183,7 @@ class TalkDocument(object):
         """
 
         self.embedding_type = self.embedding_type if self.embedding_type else embedding_type
-        vectorstore_type = vectorstore_type.upper() if vectorstore_type.upper() in util.VECTORSTORE_TYPE_LIST else util.VECTORSTORE_TYPE_LIST[0]
+        vectorstore_type = vectorstore_type.upper() if vectorstore_type.upper() in VECTORSTORE_TYPE_LIST else VECTORSTORE_TYPE_LIST[0]
 
         self.get_embedding(embedding_type=self.embedding_type, OPENAI_KEY=OPENAI_KEY)
 
@@ -275,7 +279,7 @@ class TalkDocument(object):
         if relevant_docs:
 
             self.repo_id = self.repo_id if self.repo_id is not None else repo_id
-            chain_type = chain_type.lower() if chain_type.lower() in util.CHAIN_TYPE_LIST else util.CHAIN_TYPE_LIST[0]
+            chain_type = chain_type.lower() if chain_type.lower() in CHAIN_TYPE_LIST else CHAIN_TYPE_LIST[0]
 
 
             if (self.repo_id != repo_id ) or (self.llm is None):
@@ -345,4 +349,22 @@ class TalkDocument(object):
         db = self.get_storage(vectorstore_type=vectorstore_type, embedding_type=embedding_type, OPENAI_KEY=OPENAI_KEY)
     
         return db
+    
 
+# ********************************** EXAMPLE **********************************
+# obj = TalkDocument(HF_API_TOKEN = "YOURKEY",data_source_path="data/test.txt")
+# obj.create_db_document()
+
+# question = "What is Hierarchy 4.0?"
+# res  = obj.do_question(question=question, language="ENGLISH")
+# print(res)
+
+"""
+RESPONSE: 
+
+{'output_text': "Hierarchy 4.0 is an innovative software solution for control Safety Systems. It provides an interactive diagram of the entire plant revealing cause and effect Behavior with readings provided in a hierarchical view allowing for a deep understanding of the system's strategy. All data is collected from multiple sources visualized as a diagram and optimized through a customized dashboard allowing users to run a logic simulation from live data or pick a moment from their history. Your simulation is based on actual safety Logics not just on a math model."}
+
+"""
+
+
+      

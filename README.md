@@ -21,22 +21,25 @@ The project is organized as follows:
 TalkDocument
 ├─ .streamlit
 │  └─ config.toml
-├─ .vscode
 ├─ data
-│  └─ test.txt
+├─ example
 ├─ README.md
 ├─ requirements.txt
 ├─ resources
+├─ setup.py
 └─ src
    ├─ Home.py
    ├─ pages
    │  ├─ 1_Step 1️⃣ Create Data Base.py
    │  ├─ 2_Step 2️⃣ Ask to the document.py
    │  ├─ __init__.py
+   │
    ├─ qa_tool.py
    ├─ style.py
-   ├─ utils.py
-   ├─ __init__py
+   ├─ utils
+   │  ├─ util.py
+   │  └─ __init__.py
+   ├─ __init__.py
 
 ```
 
@@ -73,5 +76,6 @@ streamlit run yourpath/TalkDocument/src/home.py
 ```
 # Credits
 This project was developed by Damián Gil González.
+
 
 

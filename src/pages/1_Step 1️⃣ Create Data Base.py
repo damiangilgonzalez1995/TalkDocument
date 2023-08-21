@@ -1,7 +1,6 @@
 import streamlit as st
-from utils import *
+from utils.util import *
 import pandas as pd
-from streamlit_extras.stoggle import stoggle
 from streamlit_extras.stylable_container import *
 from streamlit_extras.switch_page_button import switch_page
 from qa_tool import TalkDocument
@@ -21,18 +20,14 @@ def create_db_page():
         col1, col2  = st.columns(2)
         with col1:
             split_type = st.selectbox("Split type:", SPLIT_TYPE_LIST)
+            repo_id = st.text_input("Repo ID", value=REPO_ID_DEFAULT)
+
         with col2:
             embedding_type = st.selectbox("Embedding type", EMBEDDING_TYPE_LIST, )
-
-            if embedding_type == "OPENAI":
-                openai_key = st.text_input(label="Please enter your openAI key:")
-
-
-        col3, col4  = st.columns(2)
-        with col3:
             vectorstore_type = st.selectbox("Model VectoreStore Type:", VECTORSTORE_TYPE_LIST)
-        with col4:
-            repo_id = st.text_input("Repo ID", value=REPO_ID_DEFAULT)
+
+        if embedding_type == "OPENAI":
+            openai_key = st.text_input(label="Please enter your openAI key:")
 
         return {"split_type": split_type,
                 "embedding_type": embedding_type,
